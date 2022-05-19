@@ -1,4 +1,6 @@
+from main.models import Teacher
+
 
 class SystemController:
     def start_system(self):
-        print()
+        print('started it!')
