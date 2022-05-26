@@ -14,3 +14,5 @@ DATABASES = {
 INSTALLED_APPS = (
     'main',
 )
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
