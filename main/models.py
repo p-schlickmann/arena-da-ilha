@@ -21,3 +21,13 @@ class User(models.Model):
 
     def __str__(self):
         return f'{self.id} | {self.first_name} {self.last_name}'
+
+
+class Lesson(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    price = models.CharField(max_length=64)
+    min_players = models.CharField(4)
+    max_players = models.CharField(4)
+
+    def __str__(self):
+        return f'{self.id} | {self.price} | {self.min_players} | {self.max_players}'

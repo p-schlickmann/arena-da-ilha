@@ -6,9 +6,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_settings')
 django.setup()
 
-
 from main.controllers.system_controller import SystemController
-
 
 if __name__ == '__main__':
     while True:
