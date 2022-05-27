@@ -17,9 +17,8 @@ class SystemController:
         return False
 
     def open_initial_view(self):
-        #if self.user_is_logged_in():
-        #    pass
-        #else:
-        #    self.__auth_controller.open_view()
+        if self.user_is_logged_in():
+            pass
+        else:
+            self.__auth_controller.open_view()
 
-        self.__teacher_controller.open_view()
