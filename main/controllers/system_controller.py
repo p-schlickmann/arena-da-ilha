@@ -21,4 +21,3 @@ class SystemController:
             pass
         else:
             self.__auth_controller.open_view()
-
