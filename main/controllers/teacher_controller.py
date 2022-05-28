@@ -3,8 +3,8 @@ from main.views.teacher_view import TeacherView
 
 class TeacherController:
 
-    def __int__(self, teacher_controller):
-        self.__teacher_controller = teacher_controller
+    def __init__(self, system_controller):
+        self.__system_controller = system_controller
         self.__view = TeacherView()
 
     def open_view(self):

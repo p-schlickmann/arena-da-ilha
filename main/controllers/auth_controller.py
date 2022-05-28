@@ -28,4 +28,15 @@ class AuthController:
             self.__view.display_msg('Registrado com sucesso!', True)
 
     def login(self):
-        pass
+        email, password = self.__view.display_login()
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            self.__view.display_msg('Invalid Authentication Credentials', False)
+        else:
+            authenticated = user.authenticate(password)
+            if authenticated:
+                self.__system_controller.set_logged_in_user({'user_type': user.type})
+                self.__system_controller.open_initial_view()
+            else:
+                self.__view.display_msg('Invalid Authentication Credentials', False)

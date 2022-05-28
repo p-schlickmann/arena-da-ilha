@@ -17,17 +17,17 @@ class User(models.Model):
 
     @staticmethod
     def generate_hashed_password(plain_text_password):
-        return bcrypt.hashpw(plain_text_password, bcrypt.gensalt())
+        return bcrypt.hashpw(plain_text_password.encode('utf-8'), bcrypt.gensalt())
+
+    def authenticate(self, password):
+        return True
 
     def __str__(self):
         return f'{self.id} | {self.first_name} {self.last_name}'
 
-
-class Lesson(models.Model):
+class Court(models.Model):
     id = models.BigAutoField(primary_key=True)
-    price = models.CharField(max_length=64)
-    min_players = models.DecimalField(max_digits=4, decimal_places=1, default=0)
-    max_players = models.DecimalField(max_digits=4, decimal_places=1, default=0)
+    name = models.CharField(max_length=64)
 
     def __str__(self):
-        return f'{self.id} | {self.price} | {self.min_players} | {self.max_players}'
+        return f'{self.id} | {self.name}'

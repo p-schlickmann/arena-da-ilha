@@ -20,4 +20,12 @@ class AuthView(BaseView):
         return button
 
     def display_register(self):
-        pass
+        return {
+            'plain_password': 'password123',
+            'first_name': 'pedro',
+            'last_name': 'mendes',
+            'email': 'admin@gmail.com'
+        }
+
+    def display_login(self):
+        return 'admin@email.com', 'password123'
