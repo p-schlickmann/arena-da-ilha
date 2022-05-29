@@ -20,14 +20,7 @@ class User(models.Model):
         return bcrypt.hashpw(plain_text_password.encode('utf-8'), bcrypt.gensalt())
 
     def authenticate(self, password):
-        return True
+        return bcrypt.checkpw(password, self.password)
 
     def __str__(self):
         return f'{self.id} | {self.first_name} {self.last_name}'
-
-class Court(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=64)
-
-    def __str__(self):
-        return f'{self.id} | {self.name}'

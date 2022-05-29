@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
+
 from main.views.base_view import BaseView
-from main.models import User
 
 
 class TeacherView(BaseView):
@@ -11,11 +11,10 @@ class TeacherView(BaseView):
 
     def open(self):
         window = sg.Window('Arena da Ilha - Professor', element_justification='c', size=(700, 450)).Layout([
-            [sg.Text('Olá, Professor', font=('Open Sans', 20), text_color='black',)],
-            [self.blue_button('Cadastrar aula', 1)],
-            [self.blue_button('Adicionar créditos', 2)],
-            [self.blue_button('Ver faturamento', 3)],
-            [sg.Text(f'{User.balance}', font=('Open Sans', 20), text_color='black', )],
+            [sg.Text('Olá, Professor', font=('Open Sans', 20), text_color='black', )],
+            [self.button('Cadastrar aula', 1)],
+            [self.button('Adicionar créditos', 2)],
+            [self.button('Ver faturamento', 3)],
         ])
         self.__window = window
         button, values = self.__window.Read()

@@ -23,6 +23,7 @@ class SystemController:
 
     def open_initial_view(self):
         if self.__logged_in_user is not None:
+            print(self.__logged_in_user)
             controllers = {
                 'admin': self.__admin_controller,
                 'teacher': self.__teacher_controller,

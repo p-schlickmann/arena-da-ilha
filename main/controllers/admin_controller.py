@@ -9,10 +9,10 @@ class AdminController:
 
     def open_view(self):
         options = {
-            1: self.register_court,
+            1: self.some_action,
         }
         selected_option = self.__view.open()
         options[selected_option]()
 
-    def register_court(self):
+    def some_action(self):
         pass
