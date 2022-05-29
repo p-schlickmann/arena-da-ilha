@@ -28,7 +28,6 @@ class SystemController:
                 'teacher': self.__teacher_controller,
                 'player': self.__player_controller,
             }
-            return controllers[self.__logged_in_user['user_type']]
+            return controllers[self.__logged_in_user['user_type']].open_view()
         else:
-            # PROVISORIO self.__auth_controller.open_view()
-            self.__admin_controller.open_view()
+            self.__auth_controller.open_view()

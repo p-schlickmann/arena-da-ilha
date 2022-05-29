@@ -1,4 +1,3 @@
-from main.models import Court
 from main.views.admin_view import AdminView
 
 
@@ -16,15 +15,4 @@ class AdminController:
         options[selected_option]()
 
     def register_court(self):
-        options = {
-            1: self.back,
-            2: self.submit_register_court,
-        }
-        selected_option, court_name = self.__view.display_register_court()
-        options[selected_option]()
-
-    def submit_register_court(self):
-        print('register')
-
-    def back(self):
-        print('voltou')
+        pass

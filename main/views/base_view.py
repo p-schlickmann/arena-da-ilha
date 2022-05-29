@@ -11,7 +11,7 @@ class BaseView(ABC):
 
     @staticmethod
     def blue_button(name, key):
-        return sg.Button(name, key=key, size=(15, 1), font=('Helvetica', 15))
+        return sg.Button(name, key=key, size=(10, 1), font=('Helvetica', 15))
 
     @staticmethod
     def display_msg(msg: str, success):
