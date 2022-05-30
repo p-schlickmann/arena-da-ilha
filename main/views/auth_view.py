@@ -9,10 +9,16 @@ class AuthView(BaseView):
         self.__window = None
 
     def open(self):
-        window = sg.Window('Arena da Ilha - Selecionar', element_justification='c', size=(700, 450)).Layout([
-            [sg.Text('Entrar ou Registrar', font=('Open Sans', 20), text_color='black', )],
+        buttons = [
             [self.button('Entrar', 2)],
             [self.button('Registrar', 1)],
+        ]
+        div = [
+            [sg.Text('Entrar ou Registrar', font=('Helvetica', 15), text_color='black', )],
+            [sg.Column(buttons, pad=(0, 25))],
+        ]
+        window = sg.Window('Arena da Ilha - Selecionar', element_justification='c', size=(700, 450)).Layout([
+            [sg.Column(div, pad=(0, 50), element_justification='c')]
         ])
         self.__window = window
         button, values = self.__window.Read()
@@ -32,12 +38,12 @@ class AuthView(BaseView):
             [
                 sg.Text('Sou um', font=('Helvetica', 15), text_color='black', size=(8, 1)),
                 sg.Text('*', font=('Helvetica', 15), text_color='red'),
-                sg.Radio('Professor', "RADIO1", default=False, key='is_teacher'),
-                sg.Radio('Jogador', "RADIO1", default=False, key='is_player')
+                sg.Radio('Professor', "RADIO1", default=False, key='is_teacher', font=('Helvetica', 15)),
+                sg.Radio('Jogador', "RADIO1", default=False, key='is_player', font=('Helvetica', 15))
             ],
         ]
         div = [
-            [sg.Text('Registrar-se', font=('Open Sans', 20), text_color='black', )],
+            [sg.Text('Registrar-se', font=('Helvetica', 15), text_color='black', )],
             [sg.Column(inputs, pad=(0, 50))],
             [self.button('Voltar', 3), self.button('Cadastrar', 2)]
         ]
@@ -57,7 +63,7 @@ class AuthView(BaseView):
         div = [
             [sg.Text('Entrar', font=('Helvetica', 15), text_color='black', )],
             [sg.Column(inputs, pad=(0, 50))],
-            [self.button('Voltar', 3), self.button('Entrar', 2)],
+            [self.button('Voltar', 1), self.button('Entrar', 2)],
         ]
 
         window = sg.Window('Arena da Ilha - Entrar', element_justification='c', size=(700, 450)).Layout([

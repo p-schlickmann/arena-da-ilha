@@ -41,9 +41,12 @@ class AuthController:
 
     def login(self):
         button, values = self.__view.display_login()
-        if button == 3:
-            self.__system_controller.open_initial_view()
+        if button == 1:
+            self.open_view()
             return
+        if values['email'] == '' or values['password'] == '':
+            self.__view.display_msg('Preencha todos os campos', False)
+            self.login()
         try:
             user = User.objects.get(email=values['email'])
         except User.DoesNotExist:

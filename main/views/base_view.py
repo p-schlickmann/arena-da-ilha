@@ -23,4 +23,4 @@ class BaseView(ABC):
 
     @staticmethod
     def display_msg(msg: str, success):
-        sg.Popup('Sucesso' if success else 'Erro', msg, font=('Helvetica', 15))
+        sg.Popup('Sucesso' if success else 'Erro', msg, font=('Helvetica', 15), )
