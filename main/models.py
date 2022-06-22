@@ -24,3 +24,10 @@ class User(models.Model):
 
     def __str__(self):
         return f'{self.id} | {self.first_name} {self.last_name}'
+    
+class Court(models.Model):
+    name = models.CharField(max_length=64)
+
+    @staticmethod
+    def _str_(self):
+        return f'{self.id} | {self.name}'
