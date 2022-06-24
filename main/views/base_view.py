@@ -10,8 +10,8 @@ class BaseView(ABC):
         pass
 
     @staticmethod
-    def button(name, key):
-        return sg.Button(name, key=key, size=(10, 1), font=('Helvetica', 15))
+    def button(name, key, size=10):
+        return sg.Button(name, key=key, size=(size, 1), font=('Helvetica', 15))
 
     @staticmethod
     def form_field(label, key, required=True, password=False):

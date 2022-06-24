@@ -24,10 +24,23 @@ class User(models.Model):
 
     def __str__(self):
         return f'{self.id} | {self.first_name} {self.last_name}'
-    
+
+
 class Court(models.Model):
     name = models.CharField(max_length=64)
 
-    @staticmethod
-    def _str_(self):
+    def __str__(self):
         return f'{self.id} | {self.name}'
+
+
+class Lesson(models.Model):
+    pass
+
+
+class Reservation(models.Model):
+    reserved_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_reservations')
+    court = models.ForeignKey(Court, on_delete=models.PROTECT, related_name='court_reservations')
+    lesson = models.OneToOneField(Lesson, on_delete=models.PROTECT, related_name='reservation')
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    hour_value = models.PositiveSmallIntegerField()

@@ -22,6 +22,9 @@ class SystemController:
         self.__logged_in_user = user
 
     def open_initial_view(self):
+        self.__logged_in_user = {
+            'user_type': 'player'
+        }
         if self.__logged_in_user is not None:
             print(self.__logged_in_user)
             controllers = {
