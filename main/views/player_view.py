@@ -34,7 +34,7 @@ class PlayerView(BaseView):
             [sg.Text('Olá, Jogador', font=('Helvetica', 15), text_color='black', )],
             [sg.Text(f'Nova reserva para o dia {selected_day}', font=('Helvetica', 15), text_color='black', )],
             [listbox],
-            [self.button('Cancelar', 0), self.button('Próximo', 1)]
+            [self.button('Próximo', 1)]
         ]
         window = sg.Window('Arena da Ilha - Jogador', element_justification='c', size=(700, 450)).Layout([
             [sg.Column(div, pad=(0, 50), element_justification='c')]

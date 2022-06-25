@@ -65,7 +65,7 @@ class Reservation(models.Model):
         return f'{self.id} | {self.day} {self.start_time}-{self.end_time} | {self.court.name}'
 
     @staticmethod
-    def get_available_days_to_make_a_reservation():
+    def get_available_days():
         today = date.today()
         court_amount = Court.objects.count()
         reservations = Reservation.objects.filter(
@@ -96,7 +96,7 @@ class Reservation(models.Model):
         return sorted(list(available_days.difference(full_booked_days)))
 
     @staticmethod
-    def get_available_time_to_make_a_reservation(day):
+    def get_available_times(day):
         print(day)
         courts_id = Court.objects.values_list('name', flat=True)
         opening, closing = ArenaInformation.get_opening_and_closing_hour()
