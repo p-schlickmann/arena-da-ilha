@@ -19,5 +19,5 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(
             create_admin_user,
-            reverse_code=lambda apps, schema_editor: print('reverting migration...'))
+            reverse_code=lambda apps, schema_editor: print('reverting create admin user data migration...'))
     ]

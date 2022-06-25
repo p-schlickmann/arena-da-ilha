@@ -1,4 +1,3 @@
-import bcrypt
 from django.db import models
 
 
@@ -40,7 +39,28 @@ class Lesson(models.Model):
 class Reservation(models.Model):
     reserved_by = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_reservations')
     court = models.ForeignKey(Court, on_delete=models.PROTECT, related_name='court_reservations')
-    lesson = models.OneToOneField(Lesson, on_delete=models.PROTECT, related_name='reservation')
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    lesson = models.OneToOneField(Lesson, on_delete=models.PROTECT, related_name='reservation', null=True)
+    day = models.DateField()
+    start_time = models.PositiveSmallIntegerField()
+    end_time = models.PositiveSmallIntegerField()
     hour_value = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return f'{self.id} | {self.day} {self.start_time}-{self.end_time} | {self.court.name}'
+
+
+class ArenaInformation(models.Model):
+    name = models.CharField(max_length=128)
+    address = models.CharField(max_length=256)
+    hour_value = models.PositiveSmallIntegerField()
+    opening_hour = models.PositiveSmallIntegerField()
+    closing_hour = models.PositiveSmallIntegerField()
+
+# from main.models import *
+# from datetime import datetime, date, time
+# p = User.objects.last()
+# c = Court.objects.last()
+# day = date(2022, 6, 26)
+# start_time = 19
+# end_time = 21
+# Reservation.objects.create(reserved_by=p, court=c, day=day, start_time=start_time, end_time=end_time, hour_value=60)
