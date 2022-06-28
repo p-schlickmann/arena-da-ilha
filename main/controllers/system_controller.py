@@ -2,6 +2,7 @@ from main.controllers.admin_controller import AdminController
 from main.controllers.auth_controller import AuthController
 from main.controllers.player_controller import PlayerController
 from main.controllers.teacher_controller import TeacherController
+from main.models import User
 
 
 class SystemController:
@@ -20,6 +21,12 @@ class SystemController:
 
     def set_logged_in_user(self, user):
         self.__logged_in_user = user
+
+    def logged_in_user_id(self):
+        return self.__logged_in_user['id']
+
+    def get_current_user_balance(self):
+        return float(User.objects.get(id=self.logged_in_user_id()).balance)
 
     def open_initial_view(self):
         self.__logged_in_user = {

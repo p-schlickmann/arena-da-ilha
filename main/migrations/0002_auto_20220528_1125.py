@@ -7,7 +7,7 @@ def create_admin_user(apps, schema_editor):
     user = apps.get_model('main', 'User')
     user.objects.create(
         first_name='Pedro', last_name='Mendes', email='windowsxpedro@gmail.com',
-        phone_number='48999990095', type='admin', password=bcrypt.hashpw('password123', bcrypt.gensalt())
+        phone_number='48999990095', user_type='admin', password=bcrypt.hashpw('password123', bcrypt.gensalt())
     )
 
 
@@ -19,5 +19,5 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(
             create_admin_user,
-            reverse_code=lambda apps, schema_editor: print('reverting migration...'))
+            reverse_code=lambda apps, schema_editor: print('reverting create admin user data migration...'))
     ]
