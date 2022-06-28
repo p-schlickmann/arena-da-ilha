@@ -65,28 +65,26 @@ class PlayerController:
         return start_time, end_time, time_formatted
 
     def select_reservation_time(self, selected_day):
+        available_times = Reservation.get_available_times(selected_day)
         button, selected_values = self.__view.open_select_reservation_time(
-            Reservation.get_available_times(selected_day), selected_day
+            available_times, selected_day
         )
-        if not selected_values:
+        if selected_values:
+            if button == 1:
+                time_list = list(map(lambda time_string: int(time_string.split(':')[0]), selected_values))
+                start_time, end_time, time_formatted = self.handle_selected_times(time_list)
+                if time_formatted:
+                    available_courts = Court.get_available_courts(selected_day, start_time, end_time)
+                    hour_value = ArenaInformation.get_hour_value()
+                    total_value = (end_time - start_time) * hour_value
+                    button = self.__view.open_select_courts(selected_day, time_formatted, available_courts, total_value)
+                    if button[1][0]:
+                        reservation_successful, msg = self.attempt_reservation(
+                            selected_day, start_time, end_time,
+                            button[1][0][0], total_value, hour_value
+                        )
+                        self.__view.display_msg(msg, success=reservation_successful)
+                    else:
+                        self.__view.display_msg('Selecione uma quadra!', False)
+        else:
             self.__view.display_msg('Selecione pelo menos uma hora', False)
-            return
-        if button == 1:
-            time_list = list(map(lambda time_string: int(time_string.split(':')[0]), selected_values))
-            start_time, end_time, time_formatted = self.handle_selected_times(time_list)
-            if not time_formatted:
-                return
-            available_courts = Court.get_available_courts(selected_day, start_time, end_time)
-            hour_value = ArenaInformation.objects.first().hour_value
-            total_value = (end_time - start_time) * hour_value
-            button = self.__view.open_select_courts(selected_day, time_formatted, available_courts, total_value)
-            if button[0] == 1:
-                selected_court = button[1][0]
-                if selected_court:
-                    reservation_successful, msg = self.attempt_reservation(
-                        selected_day, start_time, end_time,
-                        selected_court[0], total_value, hour_value
-                    )
-                    self.__view.display_msg(msg, success=reservation_successful)
-                else:
-                    self.__view.display_msg('Selecione uma quadra!', False)
