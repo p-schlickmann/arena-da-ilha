@@ -14,13 +14,15 @@ class BaseView(ABC):
         return sg.Button(name, key=key, size=(size, 1), font=('Helvetica', 15))
 
     @staticmethod
-    def form_field(label, key, required=True, password=False):
+    def form_field(label, key, required=True, password=False, size=(30, 2), text_size=(8, 1)):
         return [
-            sg.Text(label, font=('Helvetica', 15), text_color='black', size=(8, 1)),
+            sg.Text(label, font=('Helvetica', 15), text_color='black', size=text_size),
             sg.Text('*', font=('Helvetica', 15), text_color='red' if required else sg.theme_background_color()),
-            sg.InputText('', size=(30, 2), font=('Helvetica', 20), key=key, password_char='*' if password else '')
+            sg.InputText('', size=size, font=('Helvetica', 20), key=key, password_char='*' if password else '')
         ]
 
     @staticmethod
     def display_msg(msg: str, success):
-        sg.Popup('Sucesso' if success else 'Erro', msg, font=('Helvetica', 15), )
+        sg.Popup('Sucesso' if success else 'Erro',
+                 msg, font=('Helvetica', 15),
+                 background_color='green' if success else 'red')

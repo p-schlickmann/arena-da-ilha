@@ -30,11 +30,10 @@ class SystemController:
 
     def open_initial_view(self):
         self.__logged_in_user = {
-            'user_type': 'player',
-            'id': '2'
+            'user_type': 'teacher'
         }
         if self.__logged_in_user is not None:
-            print(self.__logged_in_user)
+            # print(self.__logged_in_user)
             controllers = {
                 'admin': self.__admin_controller,
                 'teacher': self.__teacher_controller,
