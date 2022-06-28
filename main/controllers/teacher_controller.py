@@ -30,7 +30,7 @@ class TeacherController:
 
     def register_lesson(self):
         if len(self.get_available_court_to_make_a_reservation()) == 0:
-            self.__view.display_msg('Nenhuma quadra disponível', False)
+            self.__view.display_msg('Não há quadras disponíveis', False)
         else:
             button, values, court = self.__view.display_register_lesson(
                 self.get_available_days_to_make_a_reservation(),
@@ -41,9 +41,13 @@ class TeacherController:
                 self.open_view()
             elif button == 3 and (values['price'] == '' or values['minPlayers'] == '' or values['maxPlayers'] == ''):
                 self.__view.display_msg('Preencha todos os campos', False)
-                self.register_lesson()
+                return self.register_lesson()
             else:
-                self.__view.display_msg(f'Aula na: {court[2]}'
+                if values["maxPlayers"] < values["minPlayers"]:
+                    self.__view.display_msg("O máximo de jogadores deve ser maior que o mínimo de jogadores!", False)
+                    return self.register_lesson()
+                self.__view.display_msg(f'Aula cadastrada com sucesso '
+                                        f'\nQuadra: {court[2]}'
                                         f'\nPreço: {values["price"]}'
                                         f'\nMinimo Jogadores: {values["minPlayers"]}'
                                         f'\nMaximo Jogadores: {values["maxPlayers"]}',
